@@ -13,4 +13,4 @@ create-dmg \
     --hide-extension "Application.app" \
     --app-drop-link 600 185 \
     "oscar-installer.dmg" \
-    "scripts/source_folder/"
+    "./scripts/source_folder/"
