@@ -1,7 +1,19 @@
 #!/bin/sh
 test -f Oscar-Installer.dmg && rm Oscar-Installer.dmg
 
-cp -R "/Users/runner/work/Oscar/Oscar/build/Build/Products/Release/Oscar.app" "scripts/source_folder/"
+if [ -d "./build/Build/Products/Release/Oscar.app" ]; then
+    echo "Oscar.app found, proceeding with copy..."
+    # Copy the built application to the source_folder
+    cp -R "./build/Build/Products/Release/Oscar.app" "scripts/source_folder/"
+    # Verify the copy
+    echo "Contents of scripts/source_folder after copy:"
+    ls -la scripts/source_folder/
+    ls -la scripts/source_folder/Oscar.app/
+else
+    echo "Oscar.app not found in ./build/Build/Products/Release/"
+    ls -la ./build/Build/Products/Release/
+    exit 1
+fi
 
 ls -la ./scripts/source_folder/
 
