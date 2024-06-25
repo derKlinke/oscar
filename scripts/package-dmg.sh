@@ -5,7 +5,7 @@ test -f Oscar-Installer.dmg && rm Oscar-Installer.dmg
 if [ -d "./build/Build/Products/Release/Oscar.app" ]; then
     echo "Oscar.app found, proceeding with copy..."
     # Copy the built application to the source_folder
-    cp -r "./build/Build/Products/Release/Oscar.app" "scripts/source_folder/"
+    cp -R "./build/Build/Products/Release/Oscar.app" "scripts/source_folder/"
 else
     echo "Oscar.app not found in ./build/Build/Products/Release/"
     ls -la ./build/Build/Products/Release/
