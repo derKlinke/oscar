@@ -6,7 +6,6 @@ cp -r "./build/Build/Release/Oscar.app" "scripts/source_folder/"
 
 create-dmg \
     --volname "Oscar Installer" \
-    --volicon ".vol_icon.icns" \
     --window-pos 200 120 \
     --window-size 800 400 \
     --icon-size 100 \
