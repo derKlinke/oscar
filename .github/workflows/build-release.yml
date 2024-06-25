@@ -41,4 +41,10 @@ jobs:
 
     - name: Package the app into a DMG
       run: |
-        create-dmg 'build/Release/Oscar.app' --overwrite
+        create-dmg 'build/Release/Oscar.app' 'build/Release/Oscar.dmg' --overwrite
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Oscar-dmg
+        path: build/Release/Oscar.dmg
