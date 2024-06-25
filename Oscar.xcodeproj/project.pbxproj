@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		466387722C2AFBD2007A6668 /* OscarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466387712C2AFBD2007A6668 /* OscarApp.swift */; };
+		466387742C2AFBD2007A6668 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466387732C2AFBD2007A6668 /* ContentView.swift */; };
+		466387762C2AFBD3007A6668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 466387752C2AFBD3007A6668 /* Assets.xcassets */; };
+		466387A12C2AFC59007A6668 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A02C2AFC59007A6668 /* Defaults */; };
+		466387A42C2AFF65007A6668 /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A32C2AFF65007A6668 /* OSCKit */; };
+		466387A62C2AFF65007A6668 /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A52C2AFF65007A6668 /* OSCKitCore */; };
+		466387A92C2B483D007A6668 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A82C2B483D007A6668 /* Sparkle */; };
+		466387AB2C2B4849007A6668 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466387AA2C2B4845007A6668 /* Updater.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4663876E2C2AFBD2007A6668 /* Oscar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oscar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		466387712C2AFBD2007A6668 /* OscarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OscarApp.swift; sourceTree = "<group>"; };
+		466387732C2AFBD2007A6668 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		466387752C2AFBD3007A6668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4663877A2C2AFBD3007A6668 /* Oscar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Oscar.entitlements; sourceTree = "<group>"; };
+		466387AA2C2B4845007A6668 /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4663876B2C2AFBD2007A6668 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				466387A12C2AFC59007A6668 /* Defaults in Frameworks */,
+				466387A92C2B483D007A6668 /* Sparkle in Frameworks */,
+				466387A42C2AFF65007A6668 /* OSCKit in Frameworks */,
+				466387A62C2AFF65007A6668 /* OSCKitCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		466387652C2AFBD2007A6668 = {
+			isa = PBXGroup;
+			children = (
+				466387702C2AFBD2007A6668 /* Oscar */,
+				4663876F2C2AFBD2007A6668 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4663876F2C2AFBD2007A6668 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4663876E2C2AFBD2007A6668 /* Oscar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		466387702C2AFBD2007A6668 /* Oscar */ = {
+			isa = PBXGroup;
+			children = (
+				466387AA2C2B4845007A6668 /* Updater.swift */,
+				466387712C2AFBD2007A6668 /* OscarApp.swift */,
+				466387732C2AFBD2007A6668 /* ContentView.swift */,
+				466387752C2AFBD3007A6668 /* Assets.xcassets */,
+				4663877A2C2AFBD3007A6668 /* Oscar.entitlements */,
+			);
+			path = Oscar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4663876D2C2AFBD2007A6668 /* Oscar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 466387932C2AFBD3007A6668 /* Build configuration list for PBXNativeTarget "Oscar" */;
+			buildPhases = (
+				4663876A2C2AFBD2007A6668 /* Sources */,
+				4663876B2C2AFBD2007A6668 /* Frameworks */,
+				4663876C2C2AFBD2007A6668 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Oscar;
+			packageProductDependencies = (
+				466387A02C2AFC59007A6668 /* Defaults */,
+				466387A32C2AFF65007A6668 /* OSCKit */,
+				466387A52C2AFF65007A6668 /* OSCKitCore */,
+				466387A82C2B483D007A6668 /* Sparkle */,
+			);
+			productName = Oscar;
+			productReference = 4663876E2C2AFBD2007A6668 /* Oscar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		466387662C2AFBD2007A6668 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					4663876D2C2AFBD2007A6668 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 466387692C2AFBD2007A6668 /* Build configuration list for PBXProject "Oscar" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 466387652C2AFBD2007A6668;
+			packageReferences = (
+				4663879F2C2AFC59007A6668 /* XCRemoteSwiftPackageReference "Defaults" */,
+				466387A22C2AFF65007A6668 /* XCRemoteSwiftPackageReference "OSCKit" */,
+				466387A72C2B483D007A6668 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
+			productRefGroup = 4663876F2C2AFBD2007A6668 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4663876D2C2AFBD2007A6668 /* Oscar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4663876C2C2AFBD2007A6668 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				466387762C2AFBD3007A6668 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4663876A2C2AFBD2007A6668 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				466387742C2AFBD2007A6668 /* ContentView.swift in Sources */,
+				466387722C2AFBD2007A6668 /* OscarApp.swift in Sources */,
+				466387AB2C2B4849007A6668 /* Updater.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		466387912C2AFBD3007A6668 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		466387922C2AFBD3007A6668 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		466387942C2AFBD3007A6668 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Oscar/Oscar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DYN8HQ6QQR;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.klinke.oscar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		466387952C2AFBD3007A6668 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Oscar/Oscar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DYN8HQ6QQR;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.klinke.oscar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		466387692C2AFBD2007A6668 /* Build configuration list for PBXProject "Oscar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				466387912C2AFBD3007A6668 /* Debug */,
+				466387922C2AFBD3007A6668 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		466387932C2AFBD3007A6668 /* Build configuration list for PBXNativeTarget "Oscar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				466387942C2AFBD3007A6668 /* Debug */,
+				466387952C2AFBD3007A6668 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4663879F2C2AFC59007A6668 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		466387A22C2AFF65007A6668 /* XCRemoteSwiftPackageReference "OSCKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/OSCKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.1;
+			};
+		};
+		466387A72C2B483D007A6668 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		466387A02C2AFC59007A6668 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4663879F2C2AFC59007A6668 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		466387A32C2AFF65007A6668 /* OSCKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 466387A22C2AFF65007A6668 /* XCRemoteSwiftPackageReference "OSCKit" */;
+			productName = OSCKit;
+		};
+		466387A52C2AFF65007A6668 /* OSCKitCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 466387A22C2AFF65007A6668 /* XCRemoteSwiftPackageReference "OSCKit" */;
+			productName = OSCKitCore;
+		};
+		466387A82C2B483D007A6668 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 466387A72C2B483D007A6668 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 466387662C2AFBD2007A6668 /* Project object */;
+}
