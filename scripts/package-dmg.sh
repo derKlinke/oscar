@@ -13,5 +13,5 @@ create-dmg \
     --icon "Oscar.app" 200 190 \
     --hide-extension "Application.app" \
     --app-drop-link 600 185 \
-    "Oscar-Installer.dmg" \
-    "source_folder/"
+    "oscar-installer.dmg" \
+    "scripts/source_folder/"
