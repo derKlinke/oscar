@@ -4,7 +4,7 @@ test -f Oscar-Installer.dmg && rm Oscar-Installer.dmg
 if [ -d "./build/Build/Products/Release/Oscar.app" ]; then
     echo "Oscar.app found, proceeding with copy..."
     # Copy the built application to the source_folder
-    cp -R "./build/Build/Products/Release/Oscar.app" "scripts/source_folder/"
+    rsync -a "./build/Build/Products/Release/Oscar.app" "scripts/source_folder/"
     # Verify the copy
     echo "Contents of scripts/source_folder after copy:"
     ls -la scripts/source_folder/
