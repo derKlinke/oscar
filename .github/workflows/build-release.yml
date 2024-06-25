@@ -37,8 +37,8 @@ jobs:
 
     - name: Build the SwiftUI app with code signing
       run: |
-        xcodebuild -scheme YourScheme -project YourProject.xcodeproj -configuration Release build CODE_SIGN_IDENTITY="${{ secrets.CODE_SIGN_IDENTITY }}" PROVISIONING_PROFILE="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}"
+        xcodebuild -scheme YourScheme -project Oscar.xcodeproj -configuration Release build CODE_SIGN_IDENTITY="${{ secrets.CODE_SIGN_IDENTITY }}" PROVISIONING_PROFILE="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}"
 
     - name: Package the app into a DMG
       run: |
-        create-dmg 'build/Release/YourApp.app' --overwrite
+        create-dmg 'build/Release/Oscar.app' --overwrite
