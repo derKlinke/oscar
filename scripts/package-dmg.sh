@@ -4,7 +4,7 @@ test -f Oscar-Installer.dmg && rm Oscar-Installer.dmg
 # copy the application to temp folder
 cp -r "./build/Build/Products/Release/Oscar.app" "./scripts/source_folder/"
 
-ls -la
+ls -la ./scripts/source_folder/
 
 create-dmg \
     --volname "Oscar Installer" \
