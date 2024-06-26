@@ -44,7 +44,7 @@ if [ ! -f "oscar-installer.dmg" ]; then
 fi
 
 # upload the build to s3
-aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$APP_VERSION.dmg
+aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$APP_VERSION-$CI_BUILD_NUMBER.dmg
 
 
 # do sparkle magic
