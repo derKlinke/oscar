@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4619EC2D2C2C539D00942CBF /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 4619EC2C2C2C539D00942CBF /* Sparkle */; };
 		466387722C2AFBD2007A6668 /* OscarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466387712C2AFBD2007A6668 /* OscarApp.swift */; };
 		466387742C2AFBD2007A6668 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466387732C2AFBD2007A6668 /* ContentView.swift */; };
 		466387762C2AFBD3007A6668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 466387752C2AFBD3007A6668 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				466387A12C2AFC59007A6668 /* Defaults in Frameworks */,
+				4619EC2D2C2C539D00942CBF /* Sparkle in Frameworks */,
 				466387A42C2AFF65007A6668 /* OSCKit in Frameworks */,
 				466387A62C2AFF65007A6668 /* OSCKitCore in Frameworks */,
 			);
@@ -98,6 +100,7 @@
 				466387A02C2AFC59007A6668 /* Defaults */,
 				466387A32C2AFF65007A6668 /* OSCKit */,
 				466387A52C2AFF65007A6668 /* OSCKitCore */,
+				4619EC2C2C2C539D00942CBF /* Sparkle */,
 			);
 			productName = Oscar;
 			productReference = 4663876E2C2AFBD2007A6668 /* Oscar.app */;
@@ -130,6 +133,7 @@
 			packageReferences = (
 				4663879F2C2AFC59007A6668 /* XCRemoteSwiftPackageReference "Defaults" */,
 				466387A22C2AFF65007A6668 /* XCRemoteSwiftPackageReference "OSCKit" */,
+				4619EC2B2C2C539D00942CBF /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 4663876F2C2AFBD2007A6668 /* Products */;
 			projectDirPath = "";
@@ -370,6 +374,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4619EC2B2C2C539D00942CBF /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.3;
+			};
+		};
 		4663879F2C2AFC59007A6668 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -389,6 +401,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4619EC2C2C2C539D00942CBF /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4619EC2B2C2C539D00942CBF /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
 		466387A02C2AFC59007A6668 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4663879F2C2AFC59007A6668 /* XCRemoteSwiftPackageReference "Defaults" */;
