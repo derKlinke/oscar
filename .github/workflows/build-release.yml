@@ -39,6 +39,10 @@ jobs:
         run: |
           xcodebuild -scheme Oscar -project Oscar.xcodeproj -configuration Release build CODE_SIGN_IDENTITY="${{ secrets.CODE_SIGN_IDENTITY }}" PROVISIONING_PROFILE="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}" -derivedDataPath build
 
+      - name: Verify Code Signing
+        run: |
+          codesign --verify --deep --strict --verbose=2 build/Build/Products/Release/Oscar.app
+
       - name: Package the app into a DMG
         run: |
           bash scripts/package-dmg.sh
