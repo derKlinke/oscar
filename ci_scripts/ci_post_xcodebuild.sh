@@ -29,6 +29,7 @@ create-dmg \
     --icon "Oscar.app" 200 190 \
     --hide-extension "Oscar.app" \
     --app-drop-link 600 185 \
+    --sandbox-safe \
     "oscar-installer.dmg" \
     "$SRC_FOLDER"
 
