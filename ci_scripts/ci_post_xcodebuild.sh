@@ -49,6 +49,6 @@ aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$APP_VERSION.dmg
 
 # do sparkle magic
 aws s3 cp --recursive $AWS_S3_BUCKET $LOCAL_BUCKET
-echo $SPARKLE_PRIVATE_KEY > private_key.pem
-bin/generate_appcast --ed-key-file private_key.pem $LOCAL_BUCKET
+echo $SPARKLE_PRIVATE_KEY
+echo $SPARKLE_PRIVATE_KEY | bin/generate_appcast $LOCAL_BUCKET
 aws s3 cp $LOCAL_BUCKET/appcast.xml $AWS_S3_BUCKET/appcast.xml
