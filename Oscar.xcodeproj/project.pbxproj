@@ -14,6 +14,7 @@
 		466387A12C2AFC59007A6668 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A02C2AFC59007A6668 /* Defaults */; };
 		466387A42C2AFF65007A6668 /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A32C2AFF65007A6668 /* OSCKit */; };
 		466387A62C2AFF65007A6668 /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A52C2AFF65007A6668 /* OSCKitCore */; };
+		469C3F6E2C2C572700C2F270 /* volicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 469C3F6D2C2C572700C2F270 /* volicon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		466387752C2AFBD3007A6668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4663877A2C2AFBD3007A6668 /* Oscar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Oscar.entitlements; sourceTree = "<group>"; };
 		466387AF2C2C3B4C007A6668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		469C3F6D2C2C572700C2F270 /* volicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = volicon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +56,9 @@
 		466387652C2AFBD2007A6668 = {
 			isa = PBXGroup;
 			children = (
+				469C3F6C2C2C571500C2F270 /* resources */,
 				4619EC282C2C506100942CBF /* ci_scripts */,
-				466387702C2AFBD2007A6668 /* Oscar */,
+				466387702C2AFBD2007A6668 /* oscar */,
 				4663876F2C2AFBD2007A6668 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,16 +71,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		466387702C2AFBD2007A6668 /* Oscar */ = {
+		466387702C2AFBD2007A6668 /* oscar */ = {
 			isa = PBXGroup;
 			children = (
 				466387AF2C2C3B4C007A6668 /* Info.plist */,
 				466387712C2AFBD2007A6668 /* OscarApp.swift */,
 				466387732C2AFBD2007A6668 /* ContentView.swift */,
-				466387752C2AFBD3007A6668 /* Assets.xcassets */,
 				4663877A2C2AFBD3007A6668 /* Oscar.entitlements */,
 			);
-			path = Oscar;
+			path = oscar;
+			sourceTree = "<group>";
+		};
+		469C3F6C2C2C571500C2F270 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				469C3F6D2C2C572700C2F270 /* volicon.icns */,
+				466387752C2AFBD3007A6668 /* Assets.xcassets */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				466387762C2AFBD3007A6668 /* Assets.xcassets in Resources */,
+				469C3F6E2C2C572700C2F270 /* volicon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
