@@ -41,6 +41,11 @@ jobs:
 
       - name: Verify Code Signing
         run: |
+          echo "Listing contents of the app bundle:"
+          ls -la build/Build/Products/Release/Oscar.app
+          echo "Checking code signature details:"
+          codesign --display --verbose=4 build/Build/Products/Release/Oscar.app
+          echo "Verifying code signature:"
           codesign --verify --deep --strict --verbose=2 build/Build/Products/Release/Oscar.app
 
       - name: Package the app into a DMG
