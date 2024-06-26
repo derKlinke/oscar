@@ -39,7 +39,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: build
-          key: ${{ runner.os }}-derived-data-${{ hashFiles('**/Oscar.xcodeproj') }}
+          key: ${{ runner.os }}-derived-data
 
       - name: Build the SwiftUI app with code signing
         run: |
@@ -49,7 +49,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: build
-          key: ${{ runner.os }}-derived-data-${{ hashFiles('**/Oscar.xcodeproj') }}
+          key: ${{ runner.os }}-derived-data
 
       - name: Package the app into a DMG
         run: |
