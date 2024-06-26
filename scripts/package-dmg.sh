@@ -7,15 +7,11 @@ if [ -d "./build/Build/Products/Release/Oscar.app" ]; then
     rsync -a "./build/Build/Products/Release/Oscar.app" "scripts/source_folder/"
     # Verify the copy
     echo "Contents of scripts/source_folder after copy:"
-    ls -la scripts/source_folder/
-    ls -la scripts/source_folder/Oscar.app/
 else
     echo "Oscar.app not found in ./build/Build/Products/Release/"
     ls -la ./build/Build/Products/Release/
     exit 1
 fi
-
-ls -la ./scripts/source_folder/
 
 create-dmg \
     --volname "Oscar Installer" \
