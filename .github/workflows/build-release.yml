@@ -97,8 +97,8 @@ jobs:
 
       - name: Configure AWS credentials
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
         run: |
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
@@ -107,14 +107,14 @@ jobs:
       - name: Upload DMG to S3
         run: |
           VERSION=$(echo ${{ steps.version.outputs.version }})
-          aws s3 cp oscar-installer.dmg s3://klinke-studio-public/apps/oscar/oscar-$VERSION.dmg
+          aws s3 cp oscar-installer.dmg ${{ secrets.S3_BUCKET_URL }}/oscar-$VERSION.dmg
 
       - name: Create local directory
         run: mkdir -p downloaded_files
 
       - name: Download all files from S3
         run: |
-          aws s3 sync s3://klinke-studio-public/apps/oscar/ downloaded_files/
+          aws s3 sync ${{ secrets.S3_BUCKET_URL }} downloaded_files/
 
       - name: Generate appcast
         run: |
@@ -122,4 +122,4 @@ jobs:
 
       - name: Upload appcast to S3
         run: |
-          aws s3 cp downloaded_files/appcast.xml s3://klinke-studio-public/apps/oscar/
+          aws s3 cp downloaded_files/appcast.xml ${{ secrets.S3_BUCKET_URL }}
