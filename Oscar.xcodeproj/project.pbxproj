@@ -27,6 +27,10 @@
 		4663877A2C2AFBD3007A6668 /* Oscar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Oscar.entitlements; sourceTree = "<group>"; };
 		466387AF2C2C3B4C007A6668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		469C3F6D2C2C572700C2F270 /* volicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = volicon.icns; sourceTree = "<group>"; };
+		469C3F702C2C63D100C2F270 /* BinaryDelta */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = BinaryDelta; sourceTree = "<group>"; };
+		469C3F712C2C63D100C2F270 /* generate_appcast */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = generate_appcast; sourceTree = "<group>"; };
+		469C3F722C2C63D100C2F270 /* generate_keys */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = generate_keys; sourceTree = "<group>"; };
+		469C3F732C2C63D100C2F270 /* sign_update */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sign_update; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 		4619EC282C2C506100942CBF /* ci_scripts */ = {
 			isa = PBXGroup;
 			children = (
+				469C3F6F2C2C63C300C2F270 /* bin */,
 				469C3F6D2C2C572700C2F270 /* volicon.icns */,
 				4619EC2A2C2C50B900942CBF /* ci_post_clone.sh */,
 				4619EC292C2C506A00942CBF /* ci_post_xcodebuild.sh */,
@@ -89,6 +94,17 @@
 				466387752C2AFBD3007A6668 /* Assets.xcassets */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		469C3F6F2C2C63C300C2F270 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				469C3F702C2C63D100C2F270 /* BinaryDelta */,
+				469C3F712C2C63D100C2F270 /* generate_appcast */,
+				469C3F722C2C63D100C2F270 /* generate_keys */,
+				469C3F732C2C63D100C2F270 /* sign_update */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

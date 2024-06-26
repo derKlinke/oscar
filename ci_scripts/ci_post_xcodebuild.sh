@@ -16,9 +16,14 @@ aws configure set default.region $AWS_DEFAULT_REGION
 # TODO: put oscar into its own bucket
 
 SRC_FOLDER=./scr_folder
+LOCAL_BUCKET=./local_bucket
 
 # make nice DMG
 rsync -a $APP_PATH $SRC_FOLDER
+if [ ! -d "$SRC_FOLDER/Oscar.app" ]; then
+    echo "Oscar.app not found in $SRC_FOLDER"
+    exit 1
+fi
 
 create-dmg \
     --volname "Oscar Installer" \
@@ -32,8 +37,18 @@ create-dmg \
     --sandbox-safe \
     "oscar-installer.dmg" \
     "$SRC_FOLDER"
+    
+if [ ! -f "oscar-installer.dmg" ]; then
+    echo "oscar-installer.dmg not found"
+    exit 1
+fi
 
 # upload the build to s3
 aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$APP_VERSION.dmg
 
+
 # do sparkle magic
+aws s3 cp --recursive $AWS_S3_BUCKET $LOCAL_BUCKET
+echo $SPARKLE_PRIVATE_KEY > private.pem
+bin/generate_appcast --ed-key-file private_key.pem $LOCAL_BUCKET
+aws s3 cp $LOCAL_BUCKET/appcast.xml $AWS_S3_BUCKET/appcast.xml
