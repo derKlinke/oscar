@@ -60,17 +60,13 @@ jobs:
           cd build/Build/Products/Release
           zip -r Oscar.app.zip Oscar.app
 
-      - name: Upload artifact
+      - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Oscar-dmg
-          path: oscar-installer.dmg
-
-      - name: Upload the app artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Oscar-app
-          path: build/Build/Products/Release/Oscar.app.zip
+          path: |
+            oscar-installer.dmg
+            build/Build/Products/Release/Oscar.app.zip
 
   release:
     needs: build
@@ -79,6 +75,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Download Dependencies
+        run: |
+          brew install --cask macfuse
+          brew install gromgit/fuse/s3fs-mac
 
       - name: Download app artifact
         uses: actions/download-artifact@v3
@@ -96,3 +97,19 @@ jobs:
           VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Oscar.app/Contents/Info.plist)
           echo "Version: $VERSION"
           echo "::set-output name=version::$VERSION"
+
+      - name: Downloaded latest Sparkle release
+        run: |
+          curl -L https://github.com/sparkle-project/Sparkle/releases/download/2.6.3/Sparkle-2.6.3.tar.xz
+          tar -xf Sparkle-2.6.3.tar.xz
+
+      - name: Upload the app to S3 and generate appcast
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          echo ${{ secrets.ACCESS_KEY_ID }}:${{ secrets.SECRET_ACCESS_KEY }} > ${HOME}/.passwd-s3fs
+          chmod 600 ${HOME}/.passwd-s3fs
+          ls -la
+          s3fs ${{ secrets.S3_BUCKET }} /Volumes/s3fs -o url=https://${{ secrets.S3_ENDPOINT }} -o use_path_request_style -o passwd_file=${HOME}/.passwd-s3fs
+          cp -r Oscar.app /Volumes/s3fs/apps/oscar/Oscar-$VERSION.dmg
+          ./Sparkle-2.6.3/bin/generate_appcast /Volumes/s3fs/apps/oscar > /Volumes/s3fs/apps/oscar/appcast.xml
+          umount /Volumes/s3fs
