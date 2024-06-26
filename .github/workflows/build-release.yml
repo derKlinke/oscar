@@ -39,6 +39,10 @@ jobs:
         run: |
           xcodebuild -scheme Oscar -project Oscar.xcodeproj -configuration Release build CODE_SIGN_IDENTITY="${{ secrets.CODE_SIGN_IDENTITY }}" PROVISIONING_PROFILE="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}" -derivedDataPath build
 
+      - name: Explicitly sign the app
+        run: |
+          codesign --force --deep --sign "${{ secrets.CODE_SIGN_IDENTITY }}" build/Build/Products/Release/Oscar.app
+
       - name: Verify Code Signing
         run: |
           echo "Listing contents of the app bundle:"
