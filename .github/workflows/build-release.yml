@@ -35,21 +35,9 @@ jobs:
         run: |
           brew install create-dmg
 
-      - name: Restore Cache
-        uses: actions/cache/restore@v4
-        with:
-          path: build
-          key: ${{ runner.os }}-derived-data
-
       - name: Build the SwiftUI app with code signing
         run: |
           xcodebuild -scheme Oscar -project Oscar.xcodeproj -configuration Release build CODE_SIGN_IDENTITY="${{ secrets.CODE_SIGN_IDENTITY }}" PROVISIONING_PROFILE="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}" -derivedDataPath build
-
-      - name: Cache Derived Data
-        uses: actions/cache/save@v4
-        with:
-          path: build
-          key: ${{ runner.os }}-derived-data
 
       - name: Package the app into a DMG
         run: |
