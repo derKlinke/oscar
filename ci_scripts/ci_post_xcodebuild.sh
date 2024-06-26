@@ -1,5 +1,13 @@
 #!/bin/sh
 
+APP_PATH="${CI_DEVELOPER_ID_SIGNED_APP_PATH}/Oscar.app"
+INFO_PLIST_PATH="${APP_PATH}/Contents/Info.plist"
+APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$INFO_PLIST_PATH")
+
+echo "APP_PATH: $APP_PATH"
+echo "INFO_PLIST_PATH: $INFO_PLIST_PATH"
+echo "APP_VERSION: $APP_VERSION"
+
 # configure aws cli
 aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
 aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
@@ -9,11 +17,8 @@ aws configure set default.region $AWS_DEFAULT_REGION
 
 SRC_FOLDER=./scr_folder
 
-# get version from Info.plist
-VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" $CI_DEVELOPER_ID_SIGNED_APP_PATH/Contents/Info.plist)
-
 # make nice DMG
-rsync -a $CI_DEVELOPER_ID_SIGNED_APP_PATH $SRC_FOLDER
+rsync -a $APP_PATH $SRC_FOLDER
 
 create-dmg \
     --volname "Oscar Installer" \
@@ -28,7 +33,6 @@ create-dmg \
     "$SRC_FOLDER"
 
 # upload the build to s3
-echo $CI_DEVELOPER_ID_SIGNED_APP_PATH
-aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$VERSION.dmg
+aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$APP_VERSION.dmg
 
 # do sparkle magic
