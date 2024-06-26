@@ -55,6 +55,11 @@ jobs:
         run: |
           bash scripts/package-dmg.sh
 
+      - name: ZIP .app archive
+        run: |
+          cd build/Build/Products/Release
+          zip -r Oscar.app.zip Oscar.app
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -65,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Oscar-app
-          path: build/Build/Products/Release/Oscar.app
+          path: build/Build/Products/Release/Oscar.app.zip
 
   release:
     needs: build
@@ -79,6 +84,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: Oscar-app
+
+      - name: Unzip the app artifact
+        run: |
+          unzip Oscar.app.zip
+          ls -la
 
       - name: Retrieve version from the app
         id: version
