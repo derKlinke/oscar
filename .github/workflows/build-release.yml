@@ -101,8 +101,8 @@ jobs:
           echo ${{ secrets.ACCESS_KEY_ID }}:${{ secrets.SECRET_ACCESS_KEY }} > ${HOME}/.passwd-s3fs
           chmod 600 ${HOME}/.passwd-s3fs
           ls -la
-          mkdir /Volumes/s3fs
-          s3fs ${{ secrets.S3_BUCKET }} /Volumes/s3fs -o passwd_file=${HOME}/.passwd-s3fs
-          cp -r Oscar.app /Volumes/s3fs/apps/oscar/Oscar-$VERSION.dmg
-          ./scripts/bin/generate_appcast /Volumes/s3fs/apps/oscar > /Volumes/s3fs/apps/oscar/appcast.xml
-          umount /Volumes/s3fs
+          mkdir /s3mount
+          s3fs ${{ secrets.S3_BUCKET }} /s3mount -o passwd_file=${HOME}/.passwd-s3fs
+          cp -r Oscar.app /s3mount/apps/oscar/Oscar-$VERSION.dmg
+          ./scripts/bin/generate_appcast /s3mount/apps/oscar > /s3mount/apps/oscar/appcast.xml
+          umount /s3mount
