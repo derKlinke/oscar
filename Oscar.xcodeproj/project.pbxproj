@@ -45,6 +45,9 @@
 		469C3F7E2C2C702600C2F270 /* OSCObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCObserver.swift; sourceTree = "<group>"; };
 		469C3F812C2C707B00C2F270 /* OSCDetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCDetailViews.swift; sourceTree = "<group>"; };
 		469C3F832C2C70B900C2F270 /* OSCChannelTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCChannelTableView.swift; sourceTree = "<group>"; };
+		469C3F852C2C777600C2F270 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		469C3F862C2C777600C2F270 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		469C3F872C2C777600C2F270 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,9 @@
 		466387652C2AFBD2007A6668 = {
 			isa = PBXGroup;
 			children = (
+				469C3F852C2C777600C2F270 /* .gitignore */,
+				469C3F862C2C777600C2F270 /* LICENSE.md */,
+				469C3F872C2C777600C2F270 /* README.md */,
 				469C3F6C2C2C571500C2F270 /* resources */,
 				4619EC282C2C506100942CBF /* ci_scripts */,
 				466387702C2AFBD2007A6668 /* oscar */,
