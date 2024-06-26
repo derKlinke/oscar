@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>SUFeedURL</key>
+	<string>https://klinke-studio-public.s3.eu-west-1.amazonaws.com/apps/oscar/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>UuA19lgR6qjhAP9zl8UpOqHSEgWnLs+NHHlH3uzXOek=</string>
+</dict>
 </plist>
