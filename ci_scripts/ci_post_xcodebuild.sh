@@ -9,6 +9,9 @@ aws configure set default.region $AWS_DEFAULT_REGION
 
 SRC_FOLDER=./scr_folder
 
+# get version from Info.plist
+VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" $CI_DEVELOPER_ID_SIGNED_APP_PATH/Contents/Info.plist)
+
 # make nice DMG
 rsync -a $CI_DEVELOPER_ID_SIGNED_APP_PATH $SRC_FOLDER
 
@@ -22,10 +25,10 @@ create-dmg \
     --hide-extension "Oscar.app" \
     --app-drop-link 600 185 \
     "oscar-installer.dmg" \
-    "$SRC_FOLDER/source_folder/"
+    "$SRC_FOLDER"
 
 # upload the build to s3
 echo $CI_DEVELOPER_ID_SIGNED_APP_PATH
-aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$CI_BUILD_NUMBER.dmg
+aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$VERSION.dmg
 
 # do sparkle magic
