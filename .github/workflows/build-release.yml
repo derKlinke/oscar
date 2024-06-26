@@ -118,8 +118,7 @@ jobs:
 
       - name: Generate appcast
         run: |
-          cd downloaded_files
-          echo ${{secrets.SPARKLE_PRIVATE_KEY}} | ../scripts/bin/generate_appcast --ed-key-file -
+          echo ${{secrets.SPARKLE_PRIVATE_KEY}} | ./scripts/bin/generate_appcast --ed-key-file - downloaded_files/
 
       - name: Upload appcast to S3
         run: |
