@@ -63,7 +63,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Oscar-dmg
+          name: oscar-build
           path: |
             oscar-installer.dmg
             build/Build/Products/Release/Oscar.app.zip
@@ -84,7 +84,7 @@ jobs:
       - name: Download app artifact
         uses: actions/download-artifact@v3
         with:
-          name: Oscar-app
+          name: oscar-build
 
       - name: Unzip the app artifact
         run: |
@@ -109,7 +109,8 @@ jobs:
           echo ${{ secrets.ACCESS_KEY_ID }}:${{ secrets.SECRET_ACCESS_KEY }} > ${HOME}/.passwd-s3fs
           chmod 600 ${HOME}/.passwd-s3fs
           ls -la
-          s3fs ${{ secrets.S3_BUCKET }} /Volumes/s3fs -o url=https://${{ secrets.S3_ENDPOINT }} -o use_path_request_style -o passwd_file=${HOME}/.passwd-s3fs
+          mkdir /Volumes/s3fs
+          s3fs ${{ secrets.S3_BUCKET }} /Volumes/s3fs -o passwd_file=${HOME}/.passwd-s3fs
           cp -r Oscar.app /Volumes/s3fs/apps/oscar/Oscar-$VERSION.dmg
           ./Sparkle-2.6.3/bin/generate_appcast /Volumes/s3fs/apps/oscar > /Volumes/s3fs/apps/oscar/appcast.xml
           umount /Volumes/s3fs
