@@ -241,7 +241,7 @@ struct ContentView: View {
             }
         } detail: {
             if let server = oscServers.first(where: { $0.port == selectedPort }) {
-                DynamicGridView(server: server, selectedChannels: $selectedChannels)
+                DynamicChanelDetailGridView(server: server, selectedChannels: $selectedChannels)
             } else {
                 Text("Select a server")
             }
@@ -252,7 +252,7 @@ struct ContentView: View {
 }
 
 // MARK: - DynamicGridView
-struct DynamicGridView: View {
+struct DynamicChanelDetailGridView: View {
     @State var server: OSCObserver
     @Binding var selectedChannels: Set<String>
 
@@ -262,7 +262,6 @@ struct DynamicGridView: View {
         if channelArray.isEmpty {
             Text("Select a channel")
         } else {
-            var grid = [GridItem(.fixed(300)), GridItem(.fixed(300))]
             GeometryReader { geometry in
                 let columns = calculateColumns(for: geometry.size.width)
                 let gridItems = Array(repeating: GridItem(.flexible()), count: columns)

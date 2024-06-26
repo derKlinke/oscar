@@ -5,9 +5,9 @@
 //  Created by Fabian S. Klinke on 2024-06-25.
 //
 
+import Defaults
 import Sparkle
 import SwiftUI
-import Defaults
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -40,6 +40,7 @@ struct OscarApp: App {
                 CheckForUpdatesView(updater: updaterController.updater)
             }
         }
+        .windowToolbarStyle(.unifiedCompact)
 
         // settings
         Settings {
@@ -56,7 +57,7 @@ struct SettingsView: View {
     @Default(.sampleFreq) private var sampleFreq
     @Default(.maxSamples) private var maxSamples
     @Default(.defaultPort) private var defaultPort
-    
+
     init(updater: SPUUpdater) {
         self.updater = updater
         _autoUpdate = State(initialValue: updater.automaticallyChecksForUpdates)
@@ -76,14 +77,16 @@ struct SettingsView: View {
             .tabItem {
                 Label("General", systemImage: "gear")
             }
-            
+
             VStack {
                 HStack {
-                    Text("Samlping Frequency: ")
+                    Text("Sampling Frequency: ")
+                        .frame(width: 150, alignment: .trailing)
                     TextField("Sample Frequency", value: $sampleFreq, formatter: NumberFormatter())
                 }
                 HStack {
                     Text("Max Samples: ")
+                        .frame(width: 150, alignment: .trailing)
                     TextField("Max Samples", value: $maxSamples, formatter: NumberFormatter())
                 }
                 Spacer()
@@ -92,13 +95,13 @@ struct SettingsView: View {
             .tabItem {
                 Label("Plots", systemImage: "waveform.path.ecg")
             }
-            
+
             VStack {
                 Toggle("Automatically check for updates", isOn: $autoUpdate)
-                    .onChange(of: autoUpdate) { _ in
+                    .onChange(of: autoUpdate) { _, _ in
                         updater.automaticallyChecksForUpdates = autoUpdate
                     }
-                
+
                 Spacer()
             }
             .padding()
