@@ -47,6 +47,7 @@
 		4619EC282C2C506100942CBF /* ci_scripts */ = {
 			isa = PBXGroup;
 			children = (
+				469C3F6D2C2C572700C2F270 /* volicon.icns */,
 				4619EC2A2C2C50B900942CBF /* ci_post_clone.sh */,
 				4619EC292C2C506A00942CBF /* ci_post_xcodebuild.sh */,
 			);
@@ -85,7 +86,6 @@
 		469C3F6C2C2C571500C2F270 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				469C3F6D2C2C572700C2F270 /* volicon.icns */,
 				466387752C2AFBD3007A6668 /* Assets.xcassets */,
 			);
 			path = resources;
