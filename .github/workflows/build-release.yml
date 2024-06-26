@@ -60,18 +60,13 @@ jobs:
           name: oscar-app
           path: build/Build/Products/Release/Oscar.app.zip
 
-  release:
+  distribute-update:
     needs: build
     runs-on: macos-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Download Dependencies
-        run: |
-          brew install --cask macfuse
-          brew install gromgit/fuse/s3fs-mac
 
       - name: Download app artifact
         uses: actions/download-artifact@v3
@@ -95,14 +90,36 @@ jobs:
         with:
           name: oscar-dmg
 
-      - name: Upload the app to S3 and generate appcast
+      - name: Set up AWS CLI
         run: |
-          VERSION=${{ steps.version.outputs.version }}
-          echo ${{ secrets.ACCESS_KEY_ID }}:${{ secrets.SECRET_ACCESS_KEY }} > ${HOME}/.passwd-s3fs
-          chmod 600 ${HOME}/.passwd-s3fs
-          ls -la
-          mkdir ./s3mount
-          s3fs ${{ secrets.S3_BUCKET }} ./s3mount -o passwd_file=${HOME}/.passwd-s3fs
-          cp -r Oscar.app ./s3mount/apps/oscar/Oscar-$VERSION.dmg
-          ./scripts/bin/generate_appcast ./s3mount/apps/oscar > ./s3mount/apps/oscar/appcast.xml
-          umount ./s3mount
+          curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+          sudo installer -pkg AWSCLIV2.pkg -target /
+
+      - name: Configure AWS credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set region eu-west-1
+
+      - name: Upload DMG to S3
+        run: |
+          VERSION=$(echo ${{ steps.version.outputs.version }})
+          aws s3 cp oscar-installer.dmg s3://klinke-studio-public/apps/oscar/oscar-$VERSION.dmg
+
+      - name: Create local directory
+        run: mkdir -p downloaded_files
+
+      - name: Download all files from S3
+        run: |
+          aws s3 sync s3://klinke-studio-public/apps/oscar/ downloaded_files/
+
+      - name: Generate appcast
+        run: |
+          ./scripts/bin/generate_appcast downloaded_files/
+
+      - name: Upload appcast to S3
+        run: |
+          aws s3 cp downloaded_files/appcast.xml s3://klinke-studio-public/apps/oscar/
