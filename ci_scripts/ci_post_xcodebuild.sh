@@ -26,6 +26,6 @@ create-dmg \
 
 # upload the build to s3
 echo $CI_DEVELOPER_ID_SIGNED_APP_PATH
-aws s3 cp "oscar-installer.dmg" s3://$AWS_S3_BUCKET/apps/oscar/oscar-$CI_BUILD_NUMBER.dmg
+aws s3 cp "oscar-installer.dmg" $AWS_S3_BUCKET/oscar-$CI_BUILD_NUMBER.dmg
 
 # do sparkle magic
