@@ -16,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4619EC292C2C506A00942CBF /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
+		4619EC2A2C2C50B900942CBF /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		4663876E2C2AFBD2007A6668 /* Oscar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oscar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		466387712C2AFBD2007A6668 /* OscarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OscarApp.swift; sourceTree = "<group>"; };
 		466387732C2AFBD2007A6668 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,9 +40,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4619EC282C2C506100942CBF /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				4619EC2A2C2C50B900942CBF /* ci_post_clone.sh */,
+				4619EC292C2C506A00942CBF /* ci_post_xcodebuild.sh */,
+			);
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		466387652C2AFBD2007A6668 = {
 			isa = PBXGroup;
 			children = (
+				4619EC282C2C506100942CBF /* ci_scripts */,
 				466387702C2AFBD2007A6668 /* Oscar */,
 				4663876F2C2AFBD2007A6668 /* Products */,
 			);
