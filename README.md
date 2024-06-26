@@ -2,11 +2,15 @@
   <img src="./resources/Assets.xcassets/AppIcon.appiconset/icon_512x512.png" width="256" height="256" />
 </div>
 
+<div align="center">
+⚠️ This project is still in development and subject to frequent changes. ⚠️
+</div>
+
+# 🦭 oscar
+
 [![swift-version](https://img.shields.io/badge/swift-5.10-brightgreen.svg)](https://github.com/apple/swift)
 [![macos-catalina](https://img.shields.io/badge/macOS-14.0-brightgreen.svg)](https://www.apple.com/macos/catalina-preview)
 [![license](https://img.shields.io/badge/license-MIT-yellow.svg)](https://en.wikipedia.org/wiki/MIT_License)
-
-# 🦭 oscar
 
 Oscar is a SwiftUI-based Mac app for monitoring incoming OSC data. It is able to listen to multiple ports simultaneously
 and sort the incoming messages into channels. Floating-point data will also be visually displayed in a chart.
@@ -21,6 +25,7 @@ Alternatively, you can build the app yourself by cloning the repository and open
 
 - [ ] custom display methods for more than floating point data
 - [ ] sending of osc dummy data with sine oscillators
+- [ ] xy or xyz pair detection with custom display methods
 
 ## LICENSE
 
