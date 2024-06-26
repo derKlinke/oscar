@@ -1,8 +1,15 @@
-# oscar
+<div align="center">
+  <img src="./Oscar/Assets.xcassets/AppIcon.appiconset/icon_512x512.png" width="256" height="256" />
+</div>
 
-![](Oscar/Assets.xcassets/AppIcon.appiconset/icon_256x256.png)
+[![Build and Package](https://github.com/derKlinke/Oscar/actions/workflows/build-release.yml/badge.svg)](https://github.com/derKlinke/Oscar/actions/workflows/build-release.yml)
+[![swift-version](https://img.shields.io/badge/swift-5.10-brightgreen.svg)](https://github.com/apple/swift)
+[![macos-catalina](https://img.shields.io/badge/macOS-14.0-brightgreen.svg)](https://www.apple.com/macos/catalina-preview)
+[![license](https://img.shields.io/badge/license-MIT-yellow.svg)](https://en.wikipedia.org/wiki/MIT_License)
 
-Oscar is a SwiftUI-based Mac app for monitoring incoming OSC data. It is able to listen to multiple ports simultaneously and sort the incoming messages. Floating-point data will also be visually displayed in a chart.
+# 🦭 oscar
+
+Oscar is a SwiftUI-based Mac app for monitoring incoming OSC data. It is able to listen to multiple ports simultaneously and sort the incoming messages into channels. Floating-point data will also be visually displayed in a chart.
 
 ## LICENSE
 
