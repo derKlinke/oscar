@@ -90,11 +90,6 @@ jobs:
           echo "Version: $VERSION"
           echo "::set-output name=version::$VERSION"
 
-      - name: Downloaded latest Sparkle release
-        run: |
-          curl -L https://github.com/sparkle-project/Sparkle/releases/download/2.6.3/Sparkle-2.6.3.tar.xz
-          tar -xf Sparkle-2.6.3.tar.xz
-
       - name: Download dmg artifact
         uses: actions/download-artifact@v3
         with:
@@ -109,5 +104,5 @@ jobs:
           mkdir /Volumes/s3fs
           s3fs ${{ secrets.S3_BUCKET }} /Volumes/s3fs -o passwd_file=${HOME}/.passwd-s3fs
           cp -r Oscar.app /Volumes/s3fs/apps/oscar/Oscar-$VERSION.dmg
-          ./Sparkle-2.6.3/bin/generate_appcast /Volumes/s3fs/apps/oscar > /Volumes/s3fs/apps/oscar/appcast.xml
+          ./scripts/bin/generate_appcast /Volumes/s3fs/apps/oscar > /Volumes/s3fs/apps/oscar/appcast.xml
           umount /Volumes/s3fs
