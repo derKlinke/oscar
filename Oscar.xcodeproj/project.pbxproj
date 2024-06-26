@@ -15,6 +15,13 @@
 		466387A42C2AFF65007A6668 /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A32C2AFF65007A6668 /* OSCKit */; };
 		466387A62C2AFF65007A6668 /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A52C2AFF65007A6668 /* OSCKitCore */; };
 		469C3F6E2C2C572700C2F270 /* volicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 469C3F6D2C2C572700C2F270 /* volicon.icns */; };
+		469C3F752C2C6F5C00C2F270 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F742C2C6F5800C2F270 /* Updater.swift */; };
+		469C3F772C2C6F7B00C2F270 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F762C2C6F7700C2F270 /* SettingsView.swift */; };
+		469C3F7A2C2C6FBA00C2F270 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F792C2C6FB700C2F270 /* Defaults.swift */; };
+		469C3F7D2C2C6FFF00C2F270 /* OSCChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F7C2C2C6FF900C2F270 /* OSCChannel.swift */; };
+		469C3F7F2C2C702D00C2F270 /* OSCObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F7E2C2C702600C2F270 /* OSCObserver.swift */; };
+		469C3F822C2C708000C2F270 /* OSCDetailViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F812C2C707B00C2F270 /* OSCDetailViews.swift */; };
+		469C3F842C2C70BA00C2F270 /* OSCChannelTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F832C2C70B900C2F270 /* OSCChannelTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +38,13 @@
 		469C3F712C2C63D100C2F270 /* generate_appcast */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = generate_appcast; sourceTree = "<group>"; };
 		469C3F722C2C63D100C2F270 /* generate_keys */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = generate_keys; sourceTree = "<group>"; };
 		469C3F732C2C63D100C2F270 /* sign_update */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sign_update; sourceTree = "<group>"; };
+		469C3F742C2C6F5800C2F270 /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		469C3F762C2C6F7700C2F270 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		469C3F792C2C6FB700C2F270 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		469C3F7C2C2C6FF900C2F270 /* OSCChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCChannel.swift; sourceTree = "<group>"; };
+		469C3F7E2C2C702600C2F270 /* OSCObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCObserver.swift; sourceTree = "<group>"; };
+		469C3F812C2C707B00C2F270 /* OSCDetailViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCDetailViews.swift; sourceTree = "<group>"; };
+		469C3F832C2C70B900C2F270 /* OSCChannelTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCChannelTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +94,9 @@
 		466387702C2AFBD2007A6668 /* oscar */ = {
 			isa = PBXGroup;
 			children = (
+				469C3F802C2C706A00C2F270 /* main_views */,
+				469C3F7B2C2C6FE600C2F270 /* osc_models */,
+				469C3F782C2C6F9900C2F270 /* preferences */,
 				466387AF2C2C3B4C007A6668 /* Info.plist */,
 				466387712C2AFBD2007A6668 /* OscarApp.swift */,
 				466387732C2AFBD2007A6668 /* ContentView.swift */,
@@ -105,6 +122,34 @@
 				469C3F732C2C63D100C2F270 /* sign_update */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		469C3F782C2C6F9900C2F270 /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				469C3F792C2C6FB700C2F270 /* Defaults.swift */,
+				469C3F762C2C6F7700C2F270 /* SettingsView.swift */,
+				469C3F742C2C6F5800C2F270 /* Updater.swift */,
+			);
+			path = preferences;
+			sourceTree = "<group>";
+		};
+		469C3F7B2C2C6FE600C2F270 /* osc_models */ = {
+			isa = PBXGroup;
+			children = (
+				469C3F7E2C2C702600C2F270 /* OSCObserver.swift */,
+				469C3F7C2C2C6FF900C2F270 /* OSCChannel.swift */,
+			);
+			path = osc_models;
+			sourceTree = "<group>";
+		};
+		469C3F802C2C706A00C2F270 /* main_views */ = {
+			isa = PBXGroup;
+			children = (
+				469C3F832C2C70B900C2F270 /* OSCChannelTableView.swift */,
+				469C3F812C2C707B00C2F270 /* OSCDetailViews.swift */,
+			);
+			path = main_views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +234,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				466387742C2AFBD2007A6668 /* ContentView.swift in Sources */,
+				469C3F772C2C6F7B00C2F270 /* SettingsView.swift in Sources */,
+				469C3F7A2C2C6FBA00C2F270 /* Defaults.swift in Sources */,
 				466387722C2AFBD2007A6668 /* OscarApp.swift in Sources */,
+				469C3F7F2C2C702D00C2F270 /* OSCObserver.swift in Sources */,
+				469C3F822C2C708000C2F270 /* OSCDetailViews.swift in Sources */,
+				469C3F842C2C70BA00C2F270 /* OSCChannelTableView.swift in Sources */,
+				469C3F752C2C6F5C00C2F270 /* Updater.swift in Sources */,
+				469C3F7D2C2C6FFF00C2F270 /* OSCChannel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
