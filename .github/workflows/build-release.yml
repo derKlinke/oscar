@@ -48,13 +48,17 @@ jobs:
           cd build/Build/Products/Release
           zip -r Oscar.app.zip Oscar.app
 
-      - name: Upload artifacts
+      - name: Upload dmg artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: oscar-build
-          path: |
-            oscar-installer.dmg
-            build/Build/Products/Release/Oscar.app.zip
+          name: oscar-dmg
+          path: oscar-installer.dmg
+
+      - name: Upload app artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: oscar-app
+          path: build/Build/Products/Release/Oscar.app.zip
 
   release:
     needs: build
@@ -72,7 +76,7 @@ jobs:
       - name: Download app artifact
         uses: actions/download-artifact@v3
         with:
-          name: oscar-build
+          name: oscar-app
 
       - name: Unzip the app artifact
         run: |
@@ -90,6 +94,11 @@ jobs:
         run: |
           curl -L https://github.com/sparkle-project/Sparkle/releases/download/2.6.3/Sparkle-2.6.3.tar.xz
           tar -xf Sparkle-2.6.3.tar.xz
+
+      - name: Download dmg artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: oscar-dmg
 
       - name: Upload the app to S3 and generate appcast
         run: |
