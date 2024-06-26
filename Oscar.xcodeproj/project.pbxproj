@@ -24,6 +24,7 @@
 		466387752C2AFBD3007A6668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4663877A2C2AFBD3007A6668 /* Oscar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Oscar.entitlements; sourceTree = "<group>"; };
 		466387AA2C2B4845007A6668 /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
+		466387AF2C2C3B4C007A6668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +61,7 @@
 		466387702C2AFBD2007A6668 /* Oscar */ = {
 			isa = PBXGroup;
 			children = (
+				466387AF2C2C3B4C007A6668 /* Info.plist */,
 				466387AA2C2B4845007A6668 /* Updater.swift */,
 				466387712C2AFBD2007A6668 /* OscarApp.swift */,
 				466387732C2AFBD2007A6668 /* ContentView.swift */,
@@ -289,6 +291,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Oscar/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -317,6 +320,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Oscar/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
