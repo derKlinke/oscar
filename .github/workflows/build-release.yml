@@ -118,7 +118,8 @@ jobs:
 
       - name: Generate appcast
         run: |
-          echo ${{secrets.SPARKLE_PRIVATE_KEY}} | ./scripts/bin/generate_appcast --ed-key-file - downloaded_files/
+          echo "${{ secrets.SPARKLE_PRIVATE_KEY }}" > private_key.pem
+          ./scripts/bin/generate_appcast --ed-key-file private_key.pem downloaded_files/
 
       - name: Upload appcast to S3
         run: |
