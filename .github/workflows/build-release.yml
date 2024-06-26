@@ -35,9 +35,21 @@ jobs:
         run: |
           brew install create-dmg
 
+      - name: Restore Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: build
+          key: ${{ runner.os }}-derived-data-${{ hashFiles('**/Oscar.xcodeproj') }}
+
       - name: Build the SwiftUI app with code signing
         run: |
           xcodebuild -scheme Oscar -project Oscar.xcodeproj -configuration Release build CODE_SIGN_IDENTITY="${{ secrets.CODE_SIGN_IDENTITY }}" PROVISIONING_PROFILE="${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}" -derivedDataPath build
+
+      - name: Cache Derived Data
+        uses: actions/cache/save@v4
+        with:
+          path: build
+          key: ${{ runner.os }}-derived-data-${{ hashFiles('**/Oscar.xcodeproj') }}
 
       - name: Package the app into a DMG
         run: |
@@ -48,3 +60,29 @@ jobs:
         with:
           name: Oscar-dmg
           path: oscar-installer.dmg
+
+      - name: Upload the app artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Oscar-app
+          path: build/Build/Products/Release/Oscar.app
+
+  release:
+    needs: build
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: Oscar-dmg
+
+      - name: Retrieve version from the app
+        id: version
+        run: |
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Oscar.app/Contents/Info.plist)
+          echo "Version: $VERSION"
+          echo "::set-output name=version::$VERSION"
