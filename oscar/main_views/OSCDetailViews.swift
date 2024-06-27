@@ -73,6 +73,7 @@ struct OSCCHannelDetailView: View {
                 Chart(0 ..< vals.count, id: \.self) { nr in
                     LineMark(x: .value("X values", nr),
                              y: .value("Y values", vals[nr]))
+                    .foregroundStyle(.text)
                 }
                 .chartXScale(domain: 0 ... 100)
             }
