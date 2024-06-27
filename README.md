@@ -26,6 +26,7 @@ Alternatively, you can build the app yourself by cloning the repository and open
 - [ ] custom display methods for more than floating point data
 - [ ] sending of osc dummy data with sine oscillators
 - [ ] xy or xyz pair detection with custom display methods
+- [ ] debug window for raw data and connection logs
 
 ## LICENSE
 
