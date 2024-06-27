@@ -9,14 +9,28 @@ import SwiftUI
 
 // MARK: - OSCChannelTableView
 struct OSCChannelTableView: View {
-    @State var server: OSCObserver
+    let server: OSCObserver
     @Binding var selectedChannels: Set<String>
 
     var body: some View {
-        // FIXME: values not updating anymore
-        Table(server.openChannels, selection: $selectedChannels) {
-            TableColumn("Address", value: \.address)
-            TableColumn("Type", value: \.tokenType)
+        Text("Listening to \(server.port)")
+            .font(.title)
+            .bold()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+
+        List(server.openChannels, selection: $selectedChannels) { channel in
+            HStack {
+                Text(channel.address)
+                Spacer()
+                Text(channel.tokenType)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .monospaced()
+        .scrollContentBackground(.hidden)
+        .onAppear {
+            print(server.port)
         }
     }
 }

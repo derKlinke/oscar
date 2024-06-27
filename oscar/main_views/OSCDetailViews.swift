@@ -83,6 +83,7 @@ struct OSCCHannelDetailView: View {
 
             Spacer()
         }
+        .monospaced()
         .padding()
         .background(RoundedRectangle(cornerRadius: 10).fill(Color.secondary.opacity(0.1)))
         .padding(10)

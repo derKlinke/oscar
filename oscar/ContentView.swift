@@ -39,6 +39,7 @@ struct ContentView: View {
                 Section("open ports") {
                     ForEach(oscServers) { server in
                         Text(portFormatter.string(from: NSNumber(value: server.port)) ?? "???")
+                            .tag(server.port)
                     }
                 }
             }
@@ -74,6 +75,7 @@ struct ContentView: View {
         }
         .navigationTitle(selectedPort != nil ?
             "Oscar - port \(portFormatter.string(from: NSNumber(value: selectedPort!)) ?? "???")" : "Oscar")
+        .background(Color.ground)
     }
 }
 

@@ -40,7 +40,7 @@ struct OscarApp: App {
                 CheckForUpdatesView(updater: updaterController.updater)
             }
         }
-        .windowToolbarStyle(.unifiedCompact)
+        .windowStyle(.hiddenTitleBar)
 
         // settings
         Settings {

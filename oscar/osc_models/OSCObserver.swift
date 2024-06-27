@@ -22,6 +22,8 @@ class OSCObserver: Identifiable {
         oscServer = OSCServer(port: port)
 
         do { try self.start() } catch { print("Error starting OSCServer: \(error)") }
+        
+        print("OSCObserver initialized on port \(port)")
     }
 
     func handleMessage(message: OSCMessage, timeTag: OSCTimeTag) {
