@@ -18,11 +18,6 @@ struct ContentView: View {
 
     @State var isPresentingAddServer = false
 
-    var portFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        return formatter
-    }
-
     fileprivate func addNewServer() {
         if oscServers.contains(where: { $0.port == newPort }) {
             print("port already observed!")
@@ -38,7 +33,7 @@ struct ContentView: View {
             List(selection: $selectedPort) {
                 Section("open ports") {
                     ForEach(oscServers) { server in
-                        Text(portFormatter.string(from: NSNumber(value: server.port)) ?? "???")
+                        Text(server.portString)
                             .tag(server.port)
                     }
                 }
@@ -73,8 +68,6 @@ struct ContentView: View {
                 Text("Select a server")
             }
         }
-        .navigationTitle(selectedPort != nil ?
-            "Oscar - port \(portFormatter.string(from: NSNumber(value: selectedPort!)) ?? "???")" : "Oscar")
         .background(Color.ground)
     }
 }

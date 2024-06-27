@@ -13,7 +13,7 @@ struct OSCChannelTableView: View {
     @Binding var selectedChannels: Set<String>
 
     var body: some View {
-        Text("Listening to \(server.port)")
+        Text("Listening to \(server.portString)")
             .font(.title)
             .bold()
             .frame(maxWidth: .infinity, alignment: .leading)

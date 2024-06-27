@@ -22,7 +22,7 @@ class OSCObserver: Identifiable {
         oscServer = OSCServer(port: port)
 
         do { try self.start() } catch { print("Error starting OSCServer: \(error)") }
-        
+
         print("OSCObserver initialized on port \(port)")
     }
 
@@ -50,4 +50,10 @@ class OSCObserver: Identifiable {
     }
 
     var id: UInt16 { port }
+
+    var portString: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter.string(from: NSNumber(value: port)) ?? "???"
+    }
 }
