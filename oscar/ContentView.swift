@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - ContentView
 struct ContentView: View {
-    @State private var oscServers = [OSCObserver(port: Defaults[.defaultPort])]
+    @State private var oscServers = [UInt16: OSCObserver]()
     @State private var newPort: UInt16 = Defaults[.defaultPort]
 
     @State private var selectedPort: UInt16?
@@ -19,12 +19,9 @@ struct ContentView: View {
     @State var isPresentingAddServer = false
 
     fileprivate func addNewServer() {
-        if oscServers.contains(where: { $0.port == newPort }) {
-            print("port already observed!")
-            return
+        if oscServers[newPort] == nil {
+            oscServers[newPort] = OSCObserver(port: newPort)
         }
-
-        oscServers.append(OSCObserver(port: newPort))
     }
 
     var body: some View {
@@ -32,9 +29,10 @@ struct ContentView: View {
         NavigationSplitView {
             List(selection: $selectedPort) {
                 Section("open ports") {
-                    ForEach(oscServers) { server in
-                        Text(server.portString)
-                            .tag(server.port)
+                    ForEach(Array(oscServers.keys), id: \.self) { port in
+                        let formatter = NumberFormatter()
+                        Text("\(formatter.string(from: NSNumber(value: port)) ?? "???")")
+                            .tag(port)
                     }
                 }
             }
@@ -56,17 +54,10 @@ struct ContentView: View {
             }
             .padding()
         } content: {
-            if let server = oscServers.first(where: { $0.port == selectedPort }) {
-                OSCChannelTableView(server: server, selectedChannels: $selectedChannels)
-            } else {
-                Text("Select a server")
-            }
+            OSCChannelTableView(oscServers: $oscServers, selectedPort: $selectedPort,
+                                selectedChannels: $selectedChannels)
         } detail: {
-            if let server = oscServers.first(where: { $0.port == selectedPort }) {
-                DynamicChanelDetailGridView(server: server, selectedChannels: $selectedChannels)
-            } else {
-                Text("Select a server")
-            }
+            DynamicChanelDetailGridView(oscServers: $oscServers, selectedPort: $selectedPort, selectedChannels: $selectedChannels)
         }
         .background(Color.ground)
     }

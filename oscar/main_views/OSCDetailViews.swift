@@ -10,31 +10,36 @@ import Charts
 
 // MARK: - DynamicChanelDetailGridView
 struct DynamicChanelDetailGridView: View {
-    @State var server: OSCObserver
+    @Binding var oscServers: [UInt16: OSCObserver]
+    @Binding var selectedPort: UInt16?
     @Binding var selectedChannels: Set<String>
 
     var body: some View {
-        let channelArray = Array(selectedChannels)
-
-        if channelArray.isEmpty {
-            Text("Select a channel")
-        } else {
-            GeometryReader { geometry in
-                let columns = calculateColumns(for: geometry.size.width)
-                let gridItems = Array(repeating: GridItem(.flexible()), count: columns)
-
-                ScrollView {
-                    LazyVGrid(columns: gridItems, spacing: 16) {
-                        ForEach(channelArray, id: \.self) { channel in
-                            if let channel = server.openChannels
-                                .first(where: { $0.address == channel }) {
-                                OSCCHannelDetailView(channel: channel)
+        if let server = oscServers[selectedPort ?? 0] {
+            let channelArray = Array(selectedChannels)
+            
+            if channelArray.isEmpty {
+                Text("Select a channel")
+            } else {
+                GeometryReader { geometry in
+                    let columns = calculateColumns(for: geometry.size.width)
+                    let gridItems = Array(repeating: GridItem(.flexible()), count: columns)
+                    
+                    ScrollView {
+                        LazyVGrid(columns: gridItems, spacing: 16) {
+                            ForEach(channelArray, id: \.self) { channel in
+                                if let channel = server.openChannels
+                                    .first(where: { $0.address == channel }) {
+                                    OSCCHannelDetailView(channel: channel)
+                                }
                             }
                         }
+                        .padding()
                     }
-                    .padding()
                 }
             }
+        } else {
+            Text("Select a port")
         }
     }
 
