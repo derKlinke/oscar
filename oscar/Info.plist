@@ -6,5 +6,9 @@
 	<string>https://klinke-studio-public.s3.eu-west-1.amazonaws.com/apps/oscar/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>UuA19lgR6qjhAP9zl8UpOqHSEgWnLs+NHHlH3uzXOek=</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>resources/FiraCode-VF.ttf</string>
+	</array>
 </dict>
 </plist>

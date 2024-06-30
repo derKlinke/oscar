@@ -20,6 +20,7 @@ struct DynamicChanelDetailGridView: View {
             
             if channelArray.isEmpty {
                 Text("Select a channel")
+                    .bodyStyle()
             } else {
                 GeometryReader { geometry in
                     let columns = calculateColumns(for: geometry.size.width)
@@ -35,11 +36,13 @@ struct DynamicChanelDetailGridView: View {
                             }
                         }
                         .padding()
+                        .font(.callout)
                     }
                 }
             }
         } else {
             Text("Select a port")
+                .bodyStyle()
         }
     }
 
@@ -58,18 +61,15 @@ struct OSCCHannelDetailView: View {
     var body: some View {
         VStack {
             Text(channel.address)
-                .font(.title2)
-                .bold()
+                .titleStyle()
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(channel.lastTime?.description ?? "???")
-                .font(.caption)
-                .foregroundColor(.secondary)
+                .captionStyle()
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(channel.tokenType)
-                .font(.caption)
-                .foregroundColor(.secondary)
+                .captionStyle()
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             if channel.tokenType == "float32" {
@@ -84,14 +84,13 @@ struct OSCCHannelDetailView: View {
             }
 
             Text(channel.lastValue)
-                .font(.title)
+                .subtitleStyle()
                 .frame(maxWidth: .infinity, alignment: .trailing)
 
             Spacer()
         }
-        .monospaced()
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color.secondary.opacity(0.1)))
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color.accent.opacity(0.4)))
         .padding(10)
     }
 }

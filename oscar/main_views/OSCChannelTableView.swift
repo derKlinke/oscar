@@ -16,25 +16,26 @@ struct OSCChannelTableView: View {
     var body: some View {
         if let server = oscServers[selectedPort ?? 0] {
             Text("Listening to \(server.portString)")
-                .font(.title)
-                .bold()
+                .titleStyle()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
 
             List(server.openChannels, selection: $selectedChannels) { channel in
                 HStack {
                     Text(channel.address)
+                    
                     Spacer()
+                    
                     Text(channel.tokenType)
                 }
+                .font(.body)
                 .frame(maxWidth: .infinity)
             }
-            .monospaced()
             .scrollContentBackground(.hidden)
         } else {
             Text("No server selected")
-                .monospaced()
+                .bodyStyle()
         }
-        
+            
     }
 }

@@ -32,6 +32,7 @@ struct ContentView: View {
                     ForEach(Array(oscServers.keys), id: \.self) { port in
                         let formatter = NumberFormatter()
                         Text("\(formatter.string(from: NSNumber(value: port)) ?? "???")")
+                            .bodyStyle()
                             .tag(port)
                     }
                 }
