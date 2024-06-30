@@ -16,6 +16,9 @@
 		466387A12C2AFC59007A6668 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A02C2AFC59007A6668 /* Defaults */; };
 		466387A42C2AFF65007A6668 /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A32C2AFF65007A6668 /* OSCKit */; };
 		466387A62C2AFF65007A6668 /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = 466387A52C2AFF65007A6668 /* OSCKitCore */; };
+		46862F632C31DEA3001489B7 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46862F622C31DE9E001489B7 /* ButtonStyles.swift */; };
+		46862F652C31E547001489B7 /* DebugConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46862F642C31E541001489B7 /* DebugConsoleView.swift */; };
+		46862F672C31E560001489B7 /* OSCDebugLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46862F662C31E55C001489B7 /* OSCDebugLogger.swift */; };
 		469C3F6E2C2C572700C2F270 /* volicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 469C3F6D2C2C572700C2F270 /* volicon.icns */; };
 		469C3F752C2C6F5C00C2F270 /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F742C2C6F5800C2F270 /* Updater.swift */; };
 		469C3F772C2C6F7B00C2F270 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C3F762C2C6F7700C2F270 /* SettingsView.swift */; };
@@ -37,6 +40,9 @@
 		466387752C2AFBD3007A6668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4663877A2C2AFBD3007A6668 /* Oscar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Oscar.entitlements; sourceTree = "<group>"; };
 		466387AF2C2C3B4C007A6668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		46862F622C31DE9E001489B7 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		46862F642C31E541001489B7 /* DebugConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugConsoleView.swift; sourceTree = "<group>"; };
+		46862F662C31E55C001489B7 /* OSCDebugLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCDebugLogger.swift; sourceTree = "<group>"; };
 		469C3F6D2C2C572700C2F270 /* volicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = volicon.icns; sourceTree = "<group>"; };
 		469C3F702C2C63D100C2F270 /* BinaryDelta */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = BinaryDelta; sourceTree = "<group>"; };
 		469C3F712C2C63D100C2F270 /* generate_appcast */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = generate_appcast; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 		461740692C31C28700676EFE /* style */ = {
 			isa = PBXGroup;
 			children = (
+				46862F622C31DE9E001489B7 /* ButtonStyles.swift */,
 				4617406A2C31C29600676EFE /* FontStyles.swift */,
 			);
 			path = style;
@@ -157,6 +164,7 @@
 		469C3F7B2C2C6FE600C2F270 /* osc_models */ = {
 			isa = PBXGroup;
 			children = (
+				46862F662C31E55C001489B7 /* OSCDebugLogger.swift */,
 				469C3F7E2C2C702600C2F270 /* OSCObserver.swift */,
 				469C3F7C2C2C6FF900C2F270 /* OSCChannel.swift */,
 			);
@@ -166,6 +174,7 @@
 		469C3F802C2C706A00C2F270 /* main_views */ = {
 			isa = PBXGroup;
 			children = (
+				46862F642C31E541001489B7 /* DebugConsoleView.swift */,
 				469C3F832C2C70B900C2F270 /* OSCChannelTableView.swift */,
 				469C3F812C2C707B00C2F270 /* OSCDetailViews.swift */,
 			);
@@ -254,10 +263,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46862F632C31DEA3001489B7 /* ButtonStyles.swift in Sources */,
 				466387742C2AFBD2007A6668 /* ContentView.swift in Sources */,
+				46862F652C31E547001489B7 /* DebugConsoleView.swift in Sources */,
 				469C3F772C2C6F7B00C2F270 /* SettingsView.swift in Sources */,
 				469C3F7A2C2C6FBA00C2F270 /* Defaults.swift in Sources */,
 				466387722C2AFBD2007A6668 /* OscarApp.swift in Sources */,
+				46862F672C31E560001489B7 /* OSCDebugLogger.swift in Sources */,
 				469C3F7F2C2C702D00C2F270 /* OSCObserver.swift in Sources */,
 				469C3F822C2C708000C2F270 /* OSCDetailViews.swift in Sources */,
 				4617406B2C31C29D00676EFE /* FontStyles.swift in Sources */,
