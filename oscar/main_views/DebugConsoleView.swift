@@ -37,6 +37,5 @@ struct DebugConsoleView: View {
                 }
             }
         }
-        .frame(height: 250)
     }
 }
