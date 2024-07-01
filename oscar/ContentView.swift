@@ -51,13 +51,12 @@ struct ContentView: View {
 
                 Spacer()
 
-                HStack(spacing: 0) {
+                HStack {
                     TextField("Port", value: $newPort, formatter: NumberFormatter())
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textFieldStyle(KSTextFieldStyle())
                         .onSubmit {
                             addNewServer()
                         }
-                        .textFieldStyle(.squareBorder)
 
                     Button {
                         addNewServer()
@@ -65,12 +64,13 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .buttonStyle(DefaultsButtonStyle(color: .ground))
                 }
                 .padding(5)
             }
             .padding(.top, 40)
             .frame(width: 200)
-            .background(.regularMaterial)
+            .background(.ground.opacity(0.8))
 
             Rectangle()
                 .fill(Color.accent)
