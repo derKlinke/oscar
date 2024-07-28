@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import trs_system
 
 extension View {
     func ksShadow(scheme: ColorScheme = .light) -> some View {
@@ -34,15 +35,16 @@ struct KSShadow: ViewModifier {
 // MARK: - DefaultsButtonStyle
 struct DefaultsButtonStyle: ButtonStyle {
     var color: Color = .accent
+    
+    @EnvironmentObject var colorManager: TRSColorManager
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.horizontal, 8)
             .frame(minHeight: kMinButtonHeight)
-            .background(color)
-            .foregroundColor(.primary)
+            .background(DynamicTRSColor.secondaryContentBackground.color)
+            .foregroundColor(DynamicTRSColor.text.color)
             .cornerRadius(kCornerRadius)
-            .ksShadow()
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
     }
 }
@@ -56,9 +58,8 @@ struct KSTextFieldStyle: TextFieldStyle {
             .textFieldStyle(PlainTextFieldStyle())
             .padding(.horizontal, 8)
             .frame(minHeight: kMinButtonHeight)
-            .background(Color.ground)
-            .foregroundColor(.primary)
+            .background(DynamicTRSColor.secondaryContentBackground.color)
+            .foregroundColor(DynamicTRSColor.text.color)
             .cornerRadius(kCornerRadius)
-            .ksShadow()
     }
 }

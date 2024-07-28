@@ -8,10 +8,15 @@
 import Defaults
 import Sparkle
 import SwiftUI
+import trs_system
 
 // MARK: - AppDelegate
 class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationWillFinishLaunching(_ notification: Notification) {}
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        TRSManager.shared.installFonts()
+    }
+
+    func applicationDidFinishLaunching(_ notification: Notification) {}
 
     // close app when last window is closed
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {

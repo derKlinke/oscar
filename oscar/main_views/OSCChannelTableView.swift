@@ -6,36 +6,57 @@
 //
 
 import SwiftUI
+import trs_system
 
 // MARK: - OSCChannelTableView
 struct OSCChannelTableView: View {
-    @Binding var oscServers: [UInt16: OSCObserver]
-    @Binding var selectedPort: UInt16?
+    @Binding var oscServers: [Int: OSCObserver]
+    @Binding var selectedPort: Int?
     @Binding var selectedChannels: Set<String>
+
+    @EnvironmentObject var colorManager: TRSColorManager
+    @State private var lastSelectedChannel: String?
 
     var body: some View {
         if let server = oscServers[selectedPort ?? 0] {
-            Text("Listening to \(server.portString)")
-                .titleStyle()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
+            VStack(spacing: 0) {
+                Text("Channels @ Port \(server.portString)")
+                    .font(trs: .headline, alignment: .left)
 
-            List(server.openChannels, selection: $selectedChannels) { channel in
-                HStack {
-                    Text(channel.address)
-                    
-                    Spacer()
-                    
-                    Text(channel.tokenType)
-                }
-                .font(.body)
-                .frame(maxWidth: .infinity)
+                TRSList(data: server.openChannels, id: \.address, multipleSelection: $selectedChannels) { channel in
+                    HStack {
+                        Text(channel.address)
+                            .font(trs: .body, padding: true)
+
+                        Spacer()
+
+                        Text(channel.lastValue)
+                            .font(trs: .body, padding: true)
+                    }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .scrollContentBackground(.hidden)
+            .padding(trs: .medium, edges: .horizontal)
         } else {
             Text("No server selected")
-                .bodyStyle()
+                .font(trs: .body)
         }
-            
+    }
+
+    private func handleSelection(of channelID: String) {
+        if let last = lastSelectedChannel,
+           let startIndex = oscServers[selectedPort!]?.openChannels
+           .firstIndex(where: { $0.address == last }),
+           let endIndex = oscServers[selectedPort!]?.openChannels
+           .firstIndex(where: { $0.address == channelID }), NSEvent.modifierFlags.contains(.shift) {
+            let range = min(startIndex, endIndex) ... max(startIndex, endIndex)
+            let channelsInRange = oscServers[selectedPort!]?.openChannels[range].map(\.address) ?? []
+            selectedChannels.formUnion(channelsInRange)
+        } else {
+            if !NSEvent.modifierFlags.contains(.shift) {
+                selectedChannels.removeAll()
+            }
+            selectedChannels.insert(channelID)
+        }
+        lastSelectedChannel = channelID
     }
 }

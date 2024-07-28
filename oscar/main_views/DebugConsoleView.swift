@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import trs_system
 
 // MARK: - DebugConsoleView
 struct DebugConsoleView: View {
     @Binding var logger: OSCDebugLogger
+    
+    @EnvironmentObject var colorManager: TRSColorManager
     
     var formatter: DateFormatter {
         let formatter = DateFormatter()
@@ -23,13 +26,13 @@ struct DebugConsoleView: View {
                 ForEach(logger.log, id: \.id) { log in
                     ZStack {
                         if log.level == .error {
-                            Color.error.opacity(0.1)
+                            DynamicTRSColor.error.color
                         } else if log.level == .warning {
-                            Color.warning.opacity(0.1)
+                            DynamicTRSColor.warning.color
                         }
                         
                         Text("\(formatter.string(from: log.date)): \(log.message)")
-                            .font(.body)
+                            .font(trs: .mono)
                             .bold(log.level == .error)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 5)

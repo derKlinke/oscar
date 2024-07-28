@@ -1,5 +1,5 @@
 {
-  "originHash" : "a96116feb10593c1e80d6f378c11a6ff7f4d35277ed0250a3d3e425d201b4d08",
+  "originHash" : "f1339786070e97ca6ecc60edfbb703bc2e978dd4afc499ebd4712c55f55b7042",
   "pins" : [
     {
       "identity" : "cocoaasyncsocket",
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "81efd5731286be759e91096043be10384034ee57",
         "version" : "1.1.3"
+      }
+    },
+    {
+      "identity" : "trs-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/derKlinke/trs-system",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4c183e42b6c98f45d9a5509bd35f514a67168a8d"
       }
     }
   ],

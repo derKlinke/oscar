@@ -7,14 +7,16 @@
 
 import Defaults
 import SwiftUI
+import trs_system
 
 // MARK: - ContentView
 struct ContentView: View {
     @State private var logger = OSCDebugLogger()
-    @State private var oscServers = [UInt16: OSCObserver]()
-    @State private var newPort: UInt16 = Defaults[.defaultPort]
+    @State private var oscServers = [Int: OSCObserver]()
+    @State private var newPort: Int = Defaults[.defaultPort]
+    @StateObject private var colorManager = TRSColorManager.shared
 
-    @State private var selectedPort: UInt16?
+    @State private var selectedPort: Int?
     @State private var selectedChannels: Set<String> = []
 
     @State private var consoleHeight: CGFloat = 200
@@ -35,21 +37,20 @@ struct ContentView: View {
     var body: some View {
         HStack(spacing: 0) {
             // sidebar
-            VStack {
-                List(selection: $selectedPort) {
-                    ForEach(Array(oscServers.keys), id: \.self) { port in
-                        HStack {
-                            let formatter = NumberFormatter()
-                            Text("\(formatter.string(from: NSNumber(value: port)) ?? "???")")
-                                .font(.body)
-                                .tag(port)
+            VStack(spacing: 0) {
+                Text("Servers")
+                    .font(trs: .headline, alignment: .left)
+                    .hidden()
 
-                            Spacer()
-                        }
+                TRSList(data: Array(oscServers.keys), id: \.self, singleSelection: $selectedPort) { port in
+                    HStack {
+                        Spacer()
+
+                        let formatter = NumberFormatter()
+                        Text("\(formatter.string(from: NSNumber(value: port)) ?? "???")")
+                            .font(trs: .body, padding: false)
                     }
                 }
-                .listStyle(SidebarListStyle())
-                .scrollContentBackground(.hidden)
 
                 Spacer()
 
@@ -66,11 +67,12 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
-                    .buttonStyle(DefaultsButtonStyle(color: .ground))
+                    .buttonStyle(DefaultsButtonStyle(color: DynamicTRSColor.contentBackground.color))
                 }
-                .padding()
             }
-            .padding(.top, 40)
+            .padding(trs: .medium, edges: .horizontal)
+            .padding(trs: .extraLarge, edges: .top)
+            .padding(trs: .medium, edges: .bottom)
             .containerRelativeFrame(.horizontal) { length, axis in
                 if axis == .horizontal {
                     max(length / 10, 200)
@@ -78,11 +80,9 @@ struct ContentView: View {
                     length
                 }
             }
-            .background(.ground.opacity(0.8))
+            .background(DynamicTRSColor.secondaryContentBackground.color)
 
-            Rectangle()
-                .fill(Color.accent)
-                .frame(width: 1)
+            VerticalSeperator()
 
             // main content
             VStack(spacing: 0) {
@@ -92,7 +92,7 @@ struct ContentView: View {
                         OSCChannelTableView(oscServers: $oscServers, selectedPort: $selectedPort,
                                             selectedChannels: $selectedChannels)
                     }
-                    .padding(.top, 20)
+                    .padding(trs: .extraLarge, edges: .top)
                     .containerRelativeFrame(.horizontal) { length, axis in
                         if axis == .horizontal {
                             min(max(length / 3, 400), 600)
@@ -101,29 +101,35 @@ struct ContentView: View {
                         }
                     }
 
-                    Rectangle()
-                        .fill(Color.accent)
-                        .frame(width: 1)
+                    VerticalSeperator()
 
                     VStack {
                         DynamicChanelDetailGridView(oscServers: $oscServers, selectedPort: $selectedPort,
                                                     selectedChannels: $selectedChannels)
                     }
-                    .padding(.top, 20)
                     .frame(maxWidth: .infinity)
                 }
-                .background(Color.ground)
+                .background(DynamicTRSColor.contentBackground.color)
 
-                Rectangle()
-                    .fill(Color.accentColor)
-                    .frame(height: 1)
+                HorizontalSeperator()
 
                 // lower status/menu bar
                 HStack(spacing: 0) {
                     Text("ip: \(getIPAddress() ?? "???")")
-                        .font(.caption)
+                        .font(trs: .caption)
                         .foregroundColor(.secondary)
                         .padding(.horizontal, 5)
+                        .frame(height: 20)
+                        .contextMenu {
+                            // copy ip to clipboard
+                            Button {
+                                let pasteboard = NSPasteboard.general
+                                pasteboard.clearContents()
+                                pasteboard.setString(getIPAddress() ?? "", forType: .string)
+                            } label: {
+                                Text("Copy IP")
+                            }
+                        }
 
                     Rectangle()
                         .fill(.clear)
@@ -148,7 +154,7 @@ struct ContentView: View {
                     }
                     .buttonStyle(DefaultsButtonStyle(color: .clear))
                 }
-                .background(Color.ground.opacity(0.8))
+                .background(DynamicTRSColor.secondaryContentBackground.color)
                 .gesture(DragGesture()
                     .onChanged { gesture in
                         let delta = gesture.translation.height
@@ -158,19 +164,22 @@ struct ContentView: View {
 
                 // debug console
                 if isShowingDebugConsole {
-                    Rectangle()
-                        .fill(Color.accent)
-                        .frame(height: 1)
+                    HorizontalSeperator()
 
                     DebugConsoleView(logger: $logger)
-                        .background(Color.ground.opacity(0.8))
+                        .background(DynamicTRSColor.secondaryContentBackground.color)
                         .frame(height: consoleHeight)
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
+        .environmentObject(colorManager)
     }
+}
+
+extension Int: Identifiable {
+    public var id: Int { self }
 }
 
 #Preview {

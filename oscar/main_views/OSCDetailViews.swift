@@ -7,12 +7,15 @@
 
 import SwiftUI
 import Charts
+import trs_system
 
 // MARK: - DynamicChanelDetailGridView
 struct DynamicChanelDetailGridView: View {
-    @Binding var oscServers: [UInt16: OSCObserver]
-    @Binding var selectedPort: UInt16?
+    @Binding var oscServers: [Int: OSCObserver]
+    @Binding var selectedPort: Int?
     @Binding var selectedChannels: Set<String>
+    
+    @EnvironmentObject var colorManager: TRSColorManager
 
     var body: some View {
         if let server = oscServers[selectedPort ?? 0] {
@@ -20,7 +23,7 @@ struct DynamicChanelDetailGridView: View {
             
             if channelArray.isEmpty {
                 Text("Select a channel")
-                    .bodyStyle()
+                    .font(trs: .body)
             } else {
                 GeometryReader { geometry in
                     let columns = calculateColumns(for: geometry.size.width)
@@ -35,14 +38,14 @@ struct DynamicChanelDetailGridView: View {
                                 }
                             }
                         }
-                        .padding()
+                        .padding(trs: .medium)
                         .font(.callout)
                     }
                 }
             }
         } else {
             Text("Select a port")
-                .bodyStyle()
+                .font(trs: .body)
         }
     }
 
@@ -59,17 +62,17 @@ struct OSCCHannelDetailView: View {
     var channel: OSCChannel
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text(channel.address)
-                .titleStyle()
+                .font(trs: .headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(channel.lastTime?.description ?? "???")
-                .captionStyle()
+                .font(trs: .caption, padding: false)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(channel.tokenType)
-                .captionStyle()
+                .font(trs: .caption, padding: false)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             if channel.tokenType == "float32" {
@@ -78,19 +81,20 @@ struct OSCCHannelDetailView: View {
                 Chart(0 ..< vals.count, id: \.self) { nr in
                     LineMark(x: .value("X values", nr),
                              y: .value("Y values", vals[nr]))
-                    .foregroundStyle(.text)
+                    .foregroundStyle(DynamicTRSColor.text.color)
                 }
                 .chartXScale(domain: 0 ... 100)
+                .padding(trs: .small, edges: [.vertical])
             }
 
             Text(channel.lastValue)
-                .subtitleStyle()
+                .font(trs: .headline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
 
             Spacer()
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color.accent.opacity(0.4)))
+        .background(RoundedRectangle(cornerRadius: 10).fill(DynamicTRSColor.secondaryContentBackground.color))
         .padding(10)
     }
 }

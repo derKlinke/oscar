@@ -8,8 +8,6 @@
 import OSCKit
 import SwiftUI
 
-
-
 // MARK: - OSCObserver
 @Observable
 class OSCObserver: Identifiable {
@@ -19,11 +17,11 @@ class OSCObserver: Identifiable {
 
     var openChannels = [OSCChannel]()
 
-    init(port: UInt16, logger: OSCDebugLogger) {
-        self.port = port
+    init(port: Int, logger: OSCDebugLogger) {
+        self.port = UInt16(port)
         self.logger = logger
 
-        oscServer = OSCServer(port: port)
+        oscServer = OSCServer(port: self.port)
 
         do { try self.start() }
         catch {
@@ -33,7 +31,8 @@ class OSCObserver: Identifiable {
 
         logger.log("Started OSCServer on port \(port)")
     }
-
+    
+    @MainActor
     func handleMessage(message: OSCMessage, timeTag: OSCTimeTag) {
         let channel = message.addressPattern.description
         let values = message.values
@@ -50,10 +49,17 @@ class OSCObserver: Identifiable {
     }
 
     func start() throws {
-        oscServer.setHandler(handleMessage)
+        oscServer.setHandler { [weak self] message, timeTag in
+            guard let self else {
+                return
+            }
+            Task {
+                await self.handleMessage(message: message, timeTag: timeTag)
+            }
+        }
         try oscServer.start()
     }
-    
+
     func stop() {
         oscServer.stop()
     }
