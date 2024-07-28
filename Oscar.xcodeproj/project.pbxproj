@@ -518,7 +518,7 @@
 			repositoryURL = "https://github.com/derKlinke/trs-system";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.0;
+				minimumVersion = 0.0.1;
 			};
 		};
 		4663879F2C2AFC59007A6668 /* XCRemoteSwiftPackageReference "Defaults" */ = {

@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/derKlinke/trs-system",
       "state" : {
-        "branch" : "main",
-        "revision" : "4c183e42b6c98f45d9a5509bd35f514a67168a8d"
+        "revision" : "60173d86a628165946a1d8bdf2048192f9e69fee",
+        "version" : "0.1.0"
       }
     }
   ],
