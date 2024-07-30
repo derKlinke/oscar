@@ -42,22 +42,4 @@ struct OSCChannelTableView: View {
                 .font(trs: .body)
         }
     }
-
-    private func handleSelection(of channelID: String) {
-        if let last = lastSelectedChannel,
-           let startIndex = oscServers[selectedPort!]?.openChannels
-           .firstIndex(where: { $0.address == last }),
-           let endIndex = oscServers[selectedPort!]?.openChannels
-           .firstIndex(where: { $0.address == channelID }), NSEvent.modifierFlags.contains(.shift) {
-            let range = min(startIndex, endIndex) ... max(startIndex, endIndex)
-            let channelsInRange = oscServers[selectedPort!]?.openChannels[range].map(\.address) ?? []
-            selectedChannels.formUnion(channelsInRange)
-        } else {
-            if !NSEvent.modifierFlags.contains(.shift) {
-                selectedChannels.removeAll()
-            }
-            selectedChannels.insert(channelID)
-        }
-        lastSelectedChannel = channelID
-    }
 }

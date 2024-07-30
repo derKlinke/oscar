@@ -16,7 +16,7 @@
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
         "branch" : "main",
-        "revision" : "d8a954e69ff13b0f7805f3757c8f8d0c8ef5a8cb"
+        "revision" : "b8c1e7c869aa9faba91edb7fdb0b0a2637740ec0"
       }
     },
     {
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sparkle-project/Sparkle",
       "state" : {
-        "revision" : "b456fd404954a9e13f55aa0c88cd5a40b8399638",
-        "version" : "2.6.3"
+        "revision" : "0ef1ee0220239b3776f433314515fd849025673f",
+        "version" : "2.6.4"
       }
     },
     {
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/derKlinke/trs-system",
       "state" : {
-        "revision" : "60173d86a628165946a1d8bdf2048192f9e69fee",
-        "version" : "0.1.0"
+        "revision" : "d17b84c9634441cdb0ac57a4cbfca60f3fb81ea7",
+        "version" : "0.1.1"
       }
     }
   ],
