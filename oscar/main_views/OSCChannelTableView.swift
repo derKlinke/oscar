@@ -20,7 +20,7 @@ struct OSCChannelTableView: View {
     var body: some View {
         if let server = oscServers[selectedPort ?? 0] {
             VStack(spacing: 0) {
-                Text("Channels @ Port \(server.portString)")
+                Text("Channels Received on Port \(server.portString)")
                     .font(trs: .headline, alignment: .left)
 
                 TRSList(data: server.openChannels, id: \.address, multipleSelection: $selectedChannels) { channel in
@@ -33,9 +33,10 @@ struct OSCChannelTableView: View {
                         Text(channel.lastValue)
                             .font(trs: .body, padding: true)
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
-            .padding(trs: .medium, edges: .horizontal)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.horizontal, .medium)
         } else {
             Text("No server selected")
                 .font(trs: .body)

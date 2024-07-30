@@ -5,8 +5,9 @@
 //  Created by Fabian S. Klinke on 2024-06-26.
 //
 
-import SwiftUI
 import Charts
+import MetalKit
+import SwiftUI
 import trs_system
 
 // MARK: - DynamicChanelDetailGridView
@@ -14,13 +15,13 @@ struct DynamicChanelDetailGridView: View {
     @Binding var oscServers: [Int: OSCObserver]
     @Binding var selectedPort: Int?
     @Binding var selectedChannels: Set<String>
-    
+
     @EnvironmentObject var colorManager: TRSColorManager
 
     var body: some View {
         if let server = oscServers[selectedPort ?? 0] {
             let channelArray = Array(selectedChannels)
-            
+
             if channelArray.isEmpty {
                 Text("Select a channel")
                     .font(trs: .body)
@@ -28,17 +29,17 @@ struct DynamicChanelDetailGridView: View {
                 GeometryReader { geometry in
                     let columns = calculateColumns(for: geometry.size.width)
                     let gridItems = Array(repeating: GridItem(.flexible()), count: columns)
-                    
+
                     ScrollView {
-                        LazyVGrid(columns: gridItems, spacing: 16) {
+                        LazyVGrid(columns: gridItems, spacing: 0) {
                             ForEach(channelArray, id: \.self) { channel in
                                 if let channel = server.openChannels
                                     .first(where: { $0.address == channel }) {
-                                    OSCCHannelDetailView(channel: channel)
+                                    OSCChannelDetailView(channel: channel)
                                 }
                             }
                         }
-                        .padding(trs: .medium)
+                        .padding(.medium)
                         .font(.callout)
                     }
                 }
@@ -57,8 +58,8 @@ struct DynamicChanelDetailGridView: View {
     }
 }
 
-// MARK: - OSCCHannelDetailView
-struct OSCCHannelDetailView: View {
+// MARK: - OSCChannelDetailView
+struct OSCChannelDetailView: View {
     var channel: OSCChannel
 
     var body: some View {
@@ -68,33 +69,67 @@ struct OSCCHannelDetailView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(channel.lastTime?.description ?? "???")
-                .font(trs: .caption, padding: false)
+                .font(trs: .caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, .tiny)
 
             Text(channel.tokenType)
-                .font(trs: .caption, padding: false)
+                .font(trs: .caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            if channel.tokenType == "float32" {
-                let vals = channel.getFloatBuffer()
+            VStack {
+                if channel.tokenType == "float32" {
+                    TRSLineGraph(dataPoints: channel.timedValueBuffer)
+                        .frame(height: 100)
+                } else if channel.tokenType == "string" {
+                    ZStack {
+                        ScrollViewReader { proxy in
+                            ScrollView(showsIndicators: false) {
+                                LazyVStack {
+                                    ForEach(channel.stringBuffer.indices,
+                                            id: \.self) { index in
+                                        Text(channel.stringBuffer[index])
+                                            .font(trs: .mono, padding: false,
+                                                  alignment: .left)
+                                            .id(index)
+                                    }
+                                }
+                            }
+                            .onChange(of: channel.stringBuffer) { _, _ in
+                                withAnimation {
+                                    proxy.scrollTo(channel.stringBuffer.count - 1,
+                                                   anchor: .bottom)
+                                }
+                            }
+                        }
 
-                Chart(0 ..< vals.count, id: \.self) { nr in
-                    LineMark(x: .value("X values", nr),
-                             y: .value("Y values", vals[nr]))
-                    .foregroundStyle(DynamicTRSColor.text.color)
+                        VStack {
+                            LinearGradient(gradient: Gradient(colors: [
+                                .clear,
+                                DynamicTRSColor.secondaryContentBackground.color,
+                            ]),
+                            startPoint: .bottom, endPoint: .top)
+                                .frame(height: .custom(level: 3))
+
+                            Spacer()
+                        }
+                    }
                 }
-                .chartXScale(domain: 0 ... 100)
-                .padding(trs: .small, edges: [.vertical])
             }
-
-            Text(channel.lastValue)
-                .font(trs: .headline)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.top, .medium)
+            .frame(height: .custom(level: 5))
 
             Spacer()
+
+            Text(channel.lastValue)
+                .font(trs: .numDisplay)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(DynamicTRSColor.secondaryContentBackground.color))
-        .padding(10)
+        .padding(.medium)
+        .background(DynamicTRSColor.secondaryContentBackground.color)
+        .roundedClip()
+        .padding(.small)
     }
 }
+
+
