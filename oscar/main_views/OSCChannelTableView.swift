@@ -32,6 +32,7 @@ struct OSCChannelTableView: View {
 
                         Text(channel.lastValue)
                             .font(trs: .body, padding: true)
+                            .help(channel.tokenType)
                     }
                 }
             }
