@@ -17,11 +17,13 @@ struct DynamicChanelDetailGridView: View {
     @Binding var selectedChannels: Set<String>
 
     @EnvironmentObject var colorManager: TRSColorManager
+    
+    var channelArray: [String] {
+        Array(selectedChannels)
+    }
 
     var body: some View {
         if let server = oscServers[selectedPort ?? 0] {
-            let channelArray = Array(selectedChannels)
-
             if channelArray.isEmpty {
                 Text("Select a channel")
                     .font(trs: .body)
@@ -40,7 +42,6 @@ struct DynamicChanelDetailGridView: View {
                             }
                         }
                         .padding(.medium)
-                        .font(.callout)
                     }
                 }
             }
@@ -51,6 +52,10 @@ struct DynamicChanelDetailGridView: View {
     }
 
     func calculateColumns(for width: CGFloat) -> Int {
+        if channelArray.count <= 1 {
+            return 1
+        }
+        
         let itemWidth: CGFloat = 300 // Desired item width
         let spacing: CGFloat = 0 // Spacing between items
         let columns = Int((width + spacing) / (itemWidth + spacing))
